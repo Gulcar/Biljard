@@ -10,12 +10,13 @@ void Physics::Step(float timeStep, int iterations, std::vector<Ball>& balls)
         {
             b.Update(timeStep / iterations);
 
-            if (Collision::IsBallPotted(b))
+            glm::vec2 potPos;
+            if (Collision::IsBallPotted(b, &potPos))
             {
-                b.position = {10000.0f, 10000.0f};
                 b.velocity = {0.0f, 0.0f};
                 b.force = {0.0f, 0.0f};
                 b.isPotted = true;
+                b.potPos = potPos;
             }
         }
 

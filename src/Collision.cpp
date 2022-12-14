@@ -81,7 +81,7 @@ void Collision::CheckWall(Ball& ball, glm::vec2 wallA, glm::vec2 wallB)
     }
 }
 
-bool Collision::IsBallPotted(Ball& ball)
+bool Collision::IsBallPotted(Ball& ball, glm::vec2* outPotPos)
 {
     const glm::vec2 pots[] = {
         {13.9f, 7.0f},
@@ -97,9 +97,11 @@ bool Collision::IsBallPotted(Ball& ball)
         float dist = glm::distance(pots[i], ball.position);
         if (dist < 1.0f)
         {
+            *outPotPos = pots[i];
             return true;
         }
     }
 
+    *outPotPos = glm::vec2(0.0f, 0.0f);
     return false;
 }

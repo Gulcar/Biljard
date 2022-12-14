@@ -13,6 +13,9 @@ public:
     glm::vec2 position = {0.0f, 0.0f};
     glm::vec2 velocity = {0.0f, 0.0f};
     glm::vec2 force = {0.0f, 0.0f};
+
     float radius = 0.5f;
+
     bool isPotted = false;
+    glm::vec2 potPos = { 0.0f, 0.0f };
 };

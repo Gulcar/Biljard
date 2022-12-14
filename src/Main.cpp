@@ -100,8 +100,12 @@ int main(int argc, char* argv[])
 
         for (int i = 0; i < balls.size(); i++)
         {
-            if (balls[i].isPotted == false)
-                Renderer::Instance.DrawBall(balls[i], whiteTexture, ballColors[i]);
+            if (balls[i].isPotted)
+            {
+                balls[i].radius = std::max(balls[i].radius - 0.05f, 0.0f);
+                balls[i].position = (glm::normalize(balls[i].potPos - balls[i].position) * 0.1f) + balls[i].position;
+            }
+            Renderer::Instance.DrawBall(balls[i], whiteTexture, ballColors[i]);
         }
 
         bool ballsMoving = false;
