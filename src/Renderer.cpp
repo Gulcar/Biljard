@@ -194,6 +194,7 @@ uint32_t Renderer::CreateTexture(const char* filename)
 {
     std::string relativeFilename = std::string("../../../") + filename;
     std::string differentRelative = std::string("../") + filename;
+    std::string anotherRelative = std::string("../../") + filename;
 
     uint32_t texture;
     glGenTextures(1, &texture);
@@ -209,6 +210,7 @@ uint32_t Renderer::CreateTexture(const char* filename)
     uint8_t* data = stbi_load(filename, &width, &height, &numOfChannels, 0);
     if (!data) data = stbi_load(relativeFilename.c_str(), &width, &height, &numOfChannels, 0);
     if (!data) data = stbi_load(differentRelative.c_str(), &width, &height, &numOfChannels, 0);
+    if (!data) data = stbi_load(anotherRelative.c_str(), &width, &height, &numOfChannels, 0);
 
     if (data)
     {
